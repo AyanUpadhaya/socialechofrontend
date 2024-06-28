@@ -103,13 +103,16 @@ const AddPost = () => {
                   type="submit"
                   className="py-2 px-5 w-[196px] cursor-pointer rounded-lg bg-gray-900 text-white font-medium"
                 >
-                  Save
+                  {isPostRequesting ? (
+                    <span className="loading loading-dots loading-md"></span>
+                  ) : (
+                    "Save"
+                  )}
                 </button>
               </div>
             </form>
           </div>
         </div>
-        {isPostRequesting && <RequestLoader></RequestLoader>}
       </div>
     </div>
   );

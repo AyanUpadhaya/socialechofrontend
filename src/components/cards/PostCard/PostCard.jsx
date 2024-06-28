@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ post, base_url, auth }) => {
   const [commentText, setCommentText] = useState("");
-  const [showFull,setshowFull] = useState(false);
+  const [showFull, setshowFull] = useState(false);
   const queryClient = useQueryClient();
   const sortedComments =
     post?.comments
@@ -65,7 +65,7 @@ const PostCard = ({ post, base_url, auth }) => {
     try {
       const response = await axios.delete(
         `${base_url}/post/delete/${postId}`,
-        
+
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
@@ -161,15 +161,23 @@ const PostCard = ({ post, base_url, auth }) => {
             </div>
           )}
         </div>
-        <div className="flex gap-4">
-          {/* update */}
-          <div className="cursor-pointer" onClick={() => handleNavigate(post)}>
-            <i className="fa-regular fa-pen-to-square text-2xl"></i>
+        {auth.user._id == post.author._id && (
+          <div className="flex gap-4">
+            {/* update */}
+            <div
+              className="cursor-pointer"
+              onClick={() => handleNavigate(post)}
+            >
+              <i className="fa-regular fa-pen-to-square text-2xl"></i>
+            </div>
+            <div
+              className="cursor-pointer"
+              onClick={() => deletePost(post?._id)}
+            >
+              <i className="fa-regular fa-trash-can text-2xl"></i>
+            </div>
           </div>
-          <div className="cursor-pointer" onClick={() => deletePost(post?._id)}>
-            <i className="fa-regular fa-trash-can text-2xl"></i>
-          </div>
-        </div>
+        )}
       </div>
       <form
         onSubmit={(e) => {

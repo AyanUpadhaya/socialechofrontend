@@ -91,7 +91,6 @@ const UpdatePost = () => {
                   defaultValue={payload?.picture}
                   placeholder="Enter photo url"
                   className="p-3 w-full rounded-xl border border-gray-300 focus:outline-0"
-                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -113,13 +112,16 @@ const UpdatePost = () => {
                   type="submit"
                   className="py-2 px-5 w-[196px] cursor-pointer rounded-lg bg-gray-900 text-white font-medium"
                 >
-                  Save Changes
+                  {isPostRequesting ? (
+                    <span className="loading loading-dots loading-md"></span>
+                  ) : (
+                    "Save Changes"
+                  )}
                 </button>
               </div>
             </form>
           </div>
         </div>
-        {isPostRequesting && <RequestLoader></RequestLoader>}
       </div>
     </div>
   );
