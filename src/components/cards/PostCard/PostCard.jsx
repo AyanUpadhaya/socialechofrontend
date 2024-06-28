@@ -123,7 +123,7 @@ const PostCard = ({ post, base_url, auth }) => {
       <h2 className="text-2xl font-semibold mb-4">{post.title}</h2>
       <p className="font-medium mb-4">Author: {post.author.name}</p>
       {post.picture && <img src={post.picture} alt={post.title} />}
-      {!showFull ? (
+      {!showFull && post.content.length>100 ? (
         <p className="my-4 whitespace-pre-wrap">
           {post.content.slice(0, 200) + "..."}
           <span
